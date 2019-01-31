@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+</head>
+<body>
+<form action="{{url_for('show')}}" method="post" enctype="multipart/form-data">
+    <strong>Please select a trained model to upload:</strong><br>
+    <input type="file" id="model" name="model">
+    <br><br>
+    <strong>Please select a word2vec model to upload:</strong><br>
+    <input type="file" id="word2vec" name="word2vec">
+    <br><br>
+    <strong>(Optional) Please select a file containing categories to upload:</strong><br>
+    <input type="file" id="classes" name="classes">
+    <br><br>
+    <input id="submit" type="submit">
+</form>
+</body>
+</html>

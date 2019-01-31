@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<style>
+
+a {
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+table {
+    font-family: arial, sans-serif;
+    font-size: 150%;
+    border-collapse: collapse;
+    width: 800px;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+<body>
+<div>
+    <a href="/" style="padding: 8px 16px;"> New model</a>
+    <a href="/input" style="padding: 8px 16px;"> New text</a>
+    <a onclick="goBack()" style="padding: 8px 16px;">&laquo;Previous</a>
+    <a onclick="goForward()" style="padding: 8px 16px;">Next&raquo;</a>
+</div>
+
+<br>
+
+<table>
+    <tr>
+        <th>Text</th>
+        <th>Category</th>
+        <th>Probability</th>
+    </tr>
+    <tr>
+        <td>{{text}}</td>
+        <td>{{index}}</td>
+        <td>{{value}}</td>
+    </tr>
+</table>
+
+</body>
+<script>
+function goBack() {
+    window.history.back();
+}
+function goForward() {
+    window.history.forward();
+}
+</script>
+</html>

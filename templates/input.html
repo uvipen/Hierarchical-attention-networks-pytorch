@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+</head>
+<style>
+
+a {
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+
+</style>
+<body>
+<div>
+    <a href="/" style="padding: 8px 16px;"> New Query</a>
+    <a onclick="goBack()" style="padding: 8px 16px;">&laquo;Previous</a>
+    <a onclick="goForward()" style="padding: 8px 16px;">Next&raquo;</a>
+</div>
+<br>
+<div>
+<form action="{{url_for('result')}}" method="post" enctype="multipart/form-data">
+    <textarea id="textarea" name="message" rows="20" cols="70" placeholder="Please type or paste some text here..."
+              onclick="myFunction()"></textarea>
+    <br><br>
+    <input id="submit" type="submit" disabled>
+</form>
+</div>
+</body>
+<script>
+function myFunction() {
+var x = document.getElementById("submit");
+x.disabled = false;
+}
+function goBack() {
+    window.history.back();
+}
+function goForward() {
+    window.history.forward();
+}
+
+</script>
+</html>
