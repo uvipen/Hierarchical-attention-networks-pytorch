@@ -20,13 +20,10 @@ class HierAttNet(nn.Module):
         self.sent_att_net = SentAttNet(sent_hidden_size, word_hidden_size, num_classes)
         self._init_hidden_state()
 
-    def _init_hidden_state(self, last_batch_size=None):
-        if last_batch_size:
-            batch_size = last_batch_size
-        else:
-            batch_size = self.batch_size
-        self.word_hidden_state = torch.zeros(2, batch_size, self.word_hidden_size)
-        self.sent_hidden_state = torch.zeros(2, batch_size, self.sent_hidden_size)
+    def _init_hidden_state(self, current_batch_size):
+        # Hidden state initialization always takes batch size from the train/eval batch
+        self.word_hidden_state = torch.zeros(2, current_batch_size, self.word_hidden_size)
+        self.sent_hidden_state = torch.zeros(2, current_batch_size, self.sent_hidden_size)
         if torch.cuda.is_available():
             self.word_hidden_state = self.word_hidden_state.cuda()
             self.sent_hidden_state = self.sent_hidden_state.cuda()
