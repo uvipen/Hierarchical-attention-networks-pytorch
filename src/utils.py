@@ -23,13 +23,15 @@ def get_evaluation(y_true, y_prob, list_metrics):
         output['confusion_matrix'] = str(metrics.confusion_matrix(y_true, y_pred))
     return output
 
-def matrix_mul(input, weight, bias=False):
+def matrix_mul(input, weight, bias=False, apply_tanh=True):
     feature_list = []
     for feature in input:
         feature = torch.mm(feature, weight)
         if isinstance(bias, torch.nn.parameter.Parameter):
             feature = feature + bias.expand(feature.size()[0], bias.size()[1])
-        feature = torch.tanh(feature).unsqueeze(0)
+        if apply_tanh:
+            feature = torch.tanh(feature)
+        feature = feature.unsqueeze(0)
         feature_list.append(feature)
 
     return torch.cat(feature_list, 0).squeeze()

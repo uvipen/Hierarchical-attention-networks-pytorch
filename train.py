@@ -82,7 +82,9 @@ def train(opt):
                 feature = feature.cuda()
                 label = label.cuda()
             optimizer.zero_grad()
-            model._init_hidden_state()
+            # Adding batch size to the 
+            train_num_sample = len(label)
+            model._init_hidden_state(train_num_sample)
             predictions = model(feature)
             loss = criterion(predictions, label)
             loss.backward()
